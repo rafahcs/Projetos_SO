@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#define TOT 70
+//esse programa lê um arquivo linha por linha buscando um padrão fornecido pelo usuário
+//somente as linhas que contiverem o padrão serão impressas
+
+int processa_arquivo(char* nome_f, char str[]){
+    
+    FILE *f = fopen(nome_f, "r");
+
+    if(f == NULL){
+        fprintf(stderr,"wgrep: não foi possível abrir arquivo");
+        return 1;   //erro
+    }
+
+    char buf[TOT];
+    //grep
+    fprintf(stdout, "linhas com o padrão %s:\n", str);
+    while(fgets(buf, sizeof buf, f) != NULL){
+        if(strstr(buf, str) == 0){
+            fprintf(stdout, "%s", buf);
+        }
+    }
+
+    fclose(f);
+    return 0;
+}
+
+int main(int argc, char* argv[]){
+    char str[TOT];
+    int erro = 0;
+
+    printf("Uso: <nome_arquivo> <string_padrao>\n");
+
+    printf("Digite o padrao a ser buscado: \t");
+    fgets(str, sizeof str, stdin);
+    str[strcspn(str, "\n")] = '\0';
+
+    if(argc < 2){
+        return 0;
+    }
+
+    for (int i = 1; i < argc; i++){
+        erro = processa_arquivo(argv[i], str);
+    }
+    
+    return erro;
+}

@@ -1,14 +1,24 @@
-# Projetos_SO
-Projetos da disciplina de Sistemas Operacionais(SO) curso de 2026.1
 
-## Projeto 1: Unix Utilities
-Baseado nas instruções de [initial-utilities](https://github.com/igorcompuff/ostep-projects/tree/master/initial-utilities)
+In this directory, you should write the program `wgrep.c` and compile it into
+the binary `wgrep` (e.g., `gcc -o wgrep wgrep.c -Wall -Werror`).
 
-Os programas só podem ser compilados em SO's Linux ou MacOS.
+After doing so, you can run the tests from this directory by running the
+`test-wgrep.sh` script. If all goes well, you will see:
 
-Progresso :
+```sh
+prompt> ./test-wgrep.sh
+test 1: passed
+test 2: passed
+test 3: passed
+test 4: passed
+test 5: passed
+test 6: passed
+test 7: passed
+prompt>
+```
 
-- wcat.c
-    - executa todos os testes 1, 2, 3, 4, 5 com sucesso
-    - é reprovado em todos os testes 6 e 7
-    - Comando para rodar todos os testes em rodada única: `./test-wcat.sh -c`
+The `test-wgrep.sh` script is just a wrapper for the `run-tests.sh` script in
+the `tester` directory of this repository. This program has a few options; see
+the relevant
+[README](https://github.com/remzi-arpacidusseau/ostep-projects/blob/master/tester/README.md)
+for details.
