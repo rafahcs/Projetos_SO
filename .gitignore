@@ -1,2 +1,3 @@
-.exe
+*.exe
 tests-out/
+*.z
