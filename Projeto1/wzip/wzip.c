@@ -48,7 +48,7 @@ int zip(char *nome_f) {
 int main(int argc, char *argv[]) {
 
     if (argc < 2) {
-        fprintf(stderr, "wzip: file1 [file2 ...]\n");
+        printf("wzip: file1 [file2 ...]\n");
         return 1;
     }
 
@@ -64,7 +64,6 @@ int main(int argc, char *argv[]) {
     if (count > 0) {
         fwrite(&count, sizeof(int), 1, stdout);
         fwrite(&prev, sizeof(char), 1, stdout);
-        
     }
 
     return erro;

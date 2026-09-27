@@ -28,8 +28,10 @@ int main(int argc, char *argv[]){
     //cat
     //loop começa em i=1 pois 0 é o nome do executado
     for(int i = 1; i < argc; i++){
-        processa_arquivo(argv[i]);
-    
+        if(processa_arquivo(argv[i]) != 0){
+            erro = 1;
+            break;
+        }
     }
 
     return erro;

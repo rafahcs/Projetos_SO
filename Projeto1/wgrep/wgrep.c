@@ -20,7 +20,7 @@ int processa_arquivo(char* nome_f, char* str){
     FILE *f = fopen(nome_f, "r");
 
     if(f == NULL){
-        fprintf(stderr,"wgrep: cannot open file\n");
+        printf("wgrep: cannot open file\n");
         return 1;   //erro
     }
 
@@ -34,7 +34,7 @@ int processa_arquivo(char* nome_f, char* str){
 
 int main(int argc, char* argv[]){
     if(argc < 2){
-        fprintf(stderr, "wgrep: searchterm [file ...]\n");
+        printf("wgrep: searchterm [file ...]\n");
         return 1;
     }
 
