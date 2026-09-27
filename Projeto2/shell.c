@@ -94,25 +94,41 @@ int main(int argc, char *argv[]) {
             while ((t = strsep(&cmd, " \t")) != NULL) {
                 if (strlen(t) == 0) continue;
 
-                if (strcmp(t, ">") == 0) {
-
+                if (strcmp(t, ">") == 0 || strchr(t, '>') != NULL) {
                     if (redirect) {
+                        error = 1;
+                        break;
+                    }
+
+                    char *gt = strchr(t, '>');
+                    if (gt != NULL && gt != t) {
+                        *gt = '\0';
+                        if (strlen(t) > 0) {
+                            args[arg_count++] = t;
+                        }
+                    } else if (gt == t && arg_count == 0) {
                         error = 1;
                         break;
                     }
 
                     redirect = 1;
 
-                    t = strsep(&cmd, " \t");
+                    if (gt != NULL && gt != t) {
+                        redir_file = gt + 1;
+                    } else {
+                        t = strsep(&cmd, " \t");
+                        if (t == NULL || strlen(t) == 0) {
+                            error = 1;
+                            break;
+                        }
+                        redir_file = t;
+                    }
 
-                    if (t == NULL || strlen(t) == 0) {
+                    if (redir_file == NULL || strlen(redir_file) == 0) {
                         error = 1;
                         break;
                     }
 
-                    redir_file = t;
-
-                    // não pode ter mais nada depois
                     char *extra;
                     while ((extra = strsep(&cmd, " \t")) != NULL) {
                         if (strlen(extra) != 0) {
